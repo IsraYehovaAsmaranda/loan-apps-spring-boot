@@ -5,6 +5,7 @@ import com.enigma.livecode_loan_app.model.response.CommonResponse;
 import com.enigma.livecode_loan_app.model.response.LoginResponse;
 import com.enigma.livecode_loan_app.model.response.RegisterResponse;
 import com.enigma.livecode_loan_app.service.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping(path = "/signup")
-    public ResponseEntity<CommonResponse<RegisterResponse>> registerUser(@RequestBody AuthRequest request) {
+    public ResponseEntity<CommonResponse<RegisterResponse>> registerUser(@Valid @RequestBody AuthRequest request) {
         RegisterResponse registerResponse = authService.register(request);
 
         CommonResponse<RegisterResponse> commonResponse = CommonResponse.<RegisterResponse>builder()
@@ -33,7 +34,7 @@ public class AuthController {
     }
 
     @PostMapping(path = "/login")
-    public ResponseEntity<CommonResponse<LoginResponse>> login(@RequestBody AuthRequest request) {
+    public ResponseEntity<CommonResponse<LoginResponse>> login(@Valid @RequestBody AuthRequest request) {
         LoginResponse loginResponse = authService.login(request);
 
         CommonResponse<LoginResponse> commonResponse = CommonResponse.<LoginResponse>builder()
