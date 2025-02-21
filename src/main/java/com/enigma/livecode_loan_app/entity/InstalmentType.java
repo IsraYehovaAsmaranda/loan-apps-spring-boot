@@ -17,6 +17,6 @@ public class InstalmentType {
     private String id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "installment_type")
-    private EInstalmentType installmentType;
+    @Column(name = "installment_type", nullable = false)
+    private EInstalmentType instalmentType;
 }
