@@ -1,7 +1,12 @@
 package com.enigma.livecode_loan_app.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.NumberSerializers;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -19,5 +24,5 @@ public class LoanType {
     private String type;
 
     @Column(name = "maximum_loan")
-    private Double maxLoan;
+    private BigDecimal maxLoan;
 }
