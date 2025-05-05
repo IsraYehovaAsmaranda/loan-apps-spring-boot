@@ -1,5 +1,6 @@
 package com.enigma.livecode_loan_app.entity;
 
+import com.enigma.livecode_loan_app.constant.ERole;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,11 +24,6 @@ public class AppUser {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToMany
-    @JoinTable(
-            name = "t_user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<Role> roles;
+    @Enumerated(EnumType.STRING)
+    private ERole role;
 }

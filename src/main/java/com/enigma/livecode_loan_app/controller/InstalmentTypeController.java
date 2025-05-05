@@ -6,6 +6,7 @@ import com.enigma.livecode_loan_app.service.InstalmentTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class InstalmentTypeController {
     private final InstalmentTypeService instalmentTypeService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CommonResponse<InstalmentType>> createInstalmentType(@RequestBody InstalmentType instalmentType) {
         InstalmentType response = instalmentTypeService.createInstalmentType(instalmentType);
 
@@ -53,6 +55,7 @@ public class InstalmentTypeController {
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CommonResponse<InstalmentType>> updateInstalmentType(@RequestBody InstalmentType instalmentType) {
         InstalmentType response = instalmentTypeService.update(instalmentType);
 
@@ -65,6 +68,7 @@ public class InstalmentTypeController {
     }
 
     @DeleteMapping(path = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CommonResponse<String>> deleteInstalmentType(@PathVariable String id) {
         instalmentTypeService.delete(id);
 

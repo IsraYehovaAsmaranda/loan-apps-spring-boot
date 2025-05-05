@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     public ResponseEntity<CommonResponse<CustomerResponse>> createCustomer(@Valid @RequestBody NewCustomerRequest request) {
         CustomerResponse customerResponse = customerService.createCustomer(request);
 
@@ -32,6 +34,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     public ResponseEntity<CommonResponse<CustomerResponse>> getCustomerById(@PathVariable String id) {
         CustomerResponse customerResponse = customerService.getById(id);
 
@@ -44,6 +47,7 @@ public class CustomerController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     public ResponseEntity<CommonResponse<List<CustomerResponse>>> getAllCustomers() {
         List<CustomerResponse> customerResponses = customerService.getAll();
 
@@ -56,6 +60,7 @@ public class CustomerController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     public ResponseEntity<CommonResponse<CustomerResponse>> updateCustomer(@RequestBody Customer customer) {
         CustomerResponse customerResponse = customerService.update(customer);
 
@@ -68,6 +73,7 @@ public class CustomerController {
     }
 
     @DeleteMapping(path = "/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     public ResponseEntity<CommonResponse<String>> deleteCustomer(@PathVariable String id) {
         customerService.delete(id);
         CommonResponse<String> response = CommonResponse.<String>builder()

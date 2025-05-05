@@ -6,6 +6,7 @@ import com.enigma.livecode_loan_app.service.LoanTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class LoanTypeController {
     private final LoanTypeService loanTypeService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CommonResponse<LoanType>> createLoanType(@RequestBody LoanType loanType) {
         LoanType response = loanTypeService.createLoanType(loanType);
 
@@ -53,6 +55,7 @@ public class LoanTypeController {
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CommonResponse<LoanType>> updateLoanType(@RequestBody LoanType loanType) {
         LoanType response = loanTypeService.update(loanType);
 
@@ -65,6 +68,7 @@ public class LoanTypeController {
     }
 
     @DeleteMapping(path = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CommonResponse<String>> deleteLoanType(@PathVariable String id) {
         loanTypeService.delete(id);
 

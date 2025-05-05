@@ -1,9 +1,6 @@
 package com.enigma.livecode_loan_app.model.response;
 
-import com.enigma.livecode_loan_app.entity.Role;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -11,6 +8,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class RegisterResponse {
+    private String id;
     private String email;
-    private List<Role> role;
+    private String role;
 }

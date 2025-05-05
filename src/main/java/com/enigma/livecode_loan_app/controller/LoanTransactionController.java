@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,6 +20,7 @@ public class LoanTransactionController {
     private final LoanTransactionService loanTransactionService;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     public ResponseEntity<CommonResponse<LoanTransactionResponse>> requestLoan(@RequestBody NewLoanTransactionRequest request) {
         LoanTransactionResponse loanTransactionResponse = loanTransactionService.requestLoan(request);
 
@@ -31,6 +33,7 @@ public class LoanTransactionController {
     }
 
     @GetMapping(path = "/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     public ResponseEntity<CommonResponse<LoanTransactionResponse>> getTransactionById(@PathVariable String id) {
         LoanTransactionResponse loanTransactionResponse = loanTransactionService.getById(id);
 
@@ -43,6 +46,7 @@ public class LoanTransactionController {
     }
 
     @PutMapping(path = "/{adminId}/approve")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CommonResponse<LoanTransactionResponse>> approveTransactionRequestByAdminId(@PathVariable String adminId, @Valid @RequestBody ApproveTransactionRequest request){
         LoanTransactionResponse loanTransactionResponse = loanTransactionService.approveTransaction(request, adminId);
 
@@ -55,6 +59,7 @@ public class LoanTransactionController {
     }
 
     @PutMapping(path = "/{trxId}/pay")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CommonResponse<String>> approveTransactionRequestByAdminId(@PathVariable String trxId, @Valid @RequestBody PayLoanTransactionRequest request){
         loanTransactionService.payInstalment(trxId, request);
 

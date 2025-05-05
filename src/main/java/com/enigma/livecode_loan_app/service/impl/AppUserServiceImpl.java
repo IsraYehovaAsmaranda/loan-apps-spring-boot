@@ -20,7 +20,7 @@ public class AppUserServiceImpl implements AppUserService {
 
         return UserResponse.builder()
                 .email(appUser.getEmail())
-                .roles(appUser.getRoles())
+                .role(appUser.getRole().getDescription())
                 .build();
     }
 }
