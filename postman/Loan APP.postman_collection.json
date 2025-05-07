@@ -1,0 +1,724 @@
+{
+	"info": {
+		"_postman_id": "c5d5499e-5ee9-4dba-8525-c7ba55b6837b",
+		"name": "Loan APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24989081"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign up customer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"customer1@gmail.com\",\r\n  \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/signup",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Admin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@gmail.com\",\r\n  \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/signup/admin",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"signup",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Staff",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"staff@gmail.com\",\r\n  \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/signup/staff",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"signup",
+								"staff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"let token = response.data.token;\r",
+									"pm.environment.set(\"token\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"customer@gmail.com\",\r\n  \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "CREATE CUSTOMER",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer aaa",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Badang\",\r\n    \"lastName\": \"Asmaranda\",\r\n    \"dateOfBirth\": \"2002-09-17\",\r\n    \"phone\": \"081259950915\",\r\n    \"userId\": \"176bc8c1-7795-4795-981e-7d5646618623\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/customers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET CUSTOMER BY ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/customers/9bbb8431-f9f9-42cb-98e4-ec2a248cce63",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers",
+								"9bbb8431-f9f9-42cb-98e4-ec2a248cce63"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE CUSTOMER",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/customers/a23cf20b-0d23-4353-acf5-0e3e19d6c9ac",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers",
+								"a23cf20b-0d23-4353-acf5-0e3e19d6c9ac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL CUSTOMER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/customers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE CUSTOMER",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"a23cf20b-0d23-4353-acf5-0e3e19d6c9ac\",\r\n    \"firstName\": \"Rifqi\",\r\n    \"lastName\": \"Asmaranda\",\r\n    \"dateOfBirth\": \"2002-09-17\",\r\n    \"phone\": \"081259950915\",\r\n    \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/customers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Installment Types",
+			"item": [
+				{
+					"name": "CREATE INSTALMENT TYPE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"instalmentType\": \"THREE_MONTHS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/instalment-types",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"instalment-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL INSTALMENT TYPES",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/instalment-types",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"instalment-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET INSTALMENT TYPE BY ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/instalment-types/34121abb-f94b-48eb-afd0-2868606006ba",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"instalment-types",
+								"34121abb-f94b-48eb-afd0-2868606006ba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE INSTALMENT TYPE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/instalment-types/34121abb-f94b-48eb-afd0-2868606006ba",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"instalment-types",
+								"34121abb-f94b-48eb-afd0-2868606006ba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE INSTALMENT TYPE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"34121abb-f94b-48eb-afd0-2868606006ba\",\r\n        \"instalmentType\": \"TWELVE_MONTHS\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/instalment-types",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"instalment-types"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loan Transaction",
+			"item": [
+				{
+					"name": "REQUEST LOAN",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"loanType\": {\r\n    \"id\": \"566ebcf6-7363-4121-bc04-62503ffbaff6\"\r\n  },\r\n  \"instalmentType\": {\r\n    \"id\": \"deb61f88-0167-43d7-9502-cb1f6d4f2a09\"\r\n  },\r\n  \"customer\": {\r\n    \"id\": \"f6a2fa5c-57a2-4164-9832-02b585361db2\"\r\n  },\r\n  \"nominal\": 10000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/transactions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "APPROVE LOAN",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"loanTransactionId\": \"e7f4f8c4-b0f1-4e79-8434-2c144ffaa449\",\r\n  \"interestRates\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/transactions/2a4acb43-08d3-43ef-8767-2247943872d0/approve",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transactions",
+								"2a4acb43-08d3-43ef-8767-2247943872d0",
+								"approve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET LOAN BY ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBZG1pbiIsInJvbGUiOiJbXSIsImV4cCI6MTc0MDIxNzY5N30.AVkz0TDwru7yl8W4kzj87clr1EKvO4iTrszmhrcUBZbs2BFxjgAqVNxR32iv42ZgCMhtLr0mFRuvAelRatDeDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"loanType\": {\r\n    \"id\": \"566ebcf6-7363-4121-bc04-62503ffbaff6\"\r\n  },\r\n  \"instalmentType\": {\r\n    \"id\": \"deb61f88-0167-43d7-9502-cb1f6d4f2a09\"\r\n  },\r\n  \"customer\": {\r\n    \"id\": \"f6a2fa5c-57a2-4164-9832-02b585361db2\"\r\n  },\r\n  \"nominal\": 10000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/transactions/0ad84b54-4b31-4cbe-9b91-a58f93938e5d",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transactions",
+								"0ad84b54-4b31-4cbe-9b91-a58f93938e5d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loan Types",
+			"item": [
+				{
+					"name": "CREATE LOAN TYPE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Pinjaman Kredit Elektronik\",\r\n    \"maxLoan\": 10000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/loan-types",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"loan-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL LOAN TYPE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBZG1pbiIsInJvbGUiOiJbXSIsImV4cCI6MTc0MDIxNzY5N30.AVkz0TDwru7yl8W4kzj87clr1EKvO4iTrszmhrcUBZbs2BFxjgAqVNxR32iv42ZgCMhtLr0mFRuvAelRatDeDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/loan-types",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"loan-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET LOAN TYPE BY ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/loan-types/d9c7f2cb-281e-48c7-b32d-0414221f7c12",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"loan-types",
+								"d9c7f2cb-281e-48c7-b32d-0414221f7c12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE INSTALMENT TYPE Copy",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/loan-types/d9c7f2cb-281e-48c7-b32d-0414221f7c12",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"loan-types",
+								"d9c7f2cb-281e-48c7-b32d-0414221f7c12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE LOAN TYPE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"7a26a66c-0f0b-4a85-b009-9ea5744ea574\",\r\n            \"type\": \"Pinjaman Kredit Elektronik\",\r\n            \"maxLoan\": 100000000\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/loan-types",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"loan-types"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET USER BY ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/2b9e8be1-25ac-4f7d-9b9f-2b0a7a4c9b01",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"2b9e8be1-25ac-4f7d-9b9f-2b0a7a4c9b01"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
